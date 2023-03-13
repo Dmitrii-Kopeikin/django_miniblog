@@ -1,14 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE>
+{% load static %}
+<html  lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Mini-blog</title>
+	<title>My blog</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+
+	<link rel="shortcut icon" href="{% static 'css/images/favicon.ico' %}" />
+
 </head>
 <body>
-    {% for publication in publication_list %}
-        <h3>{{ publication.title }}</h3>
-        <p>{{ publication.description }}</p>
-        <p>{{ publication.author }}</p>
-    {% endfor %}
+<div class="shell">
+	<div class="border">
+
+		<div id="navigation">
+			<ul>
+			    <li><a href="#" class="active">Main</a></li>
+			    <li><a href="#">Admin panel</a></li>
+			    
+			</ul>
+		</div>
+
+		<div id="main">
+			<div id="content" class="left">
+				
+				<div class="projects">
+					<h3>Records</h3>
+                    {% for publication in publication_list %}
+					<div class="item">
+						<div class="image left">
+							<a href="#"><img src="css/images/project01.jpg" alt="" /></a>
+						</div>
+						<div class="text left">
+							<h4>{{ publication.title }}</h4>
+							<p>{{ publicatrion.description }}</p>
+							<p>Author: {{ publication.author }} </p>
+						</div>
+						<div class="cl">&nbsp;</div>
+					</div>
+                    {% endfor %}
+					
+				</div>
+			</div>
+			
+			<div class="cl">&nbsp;</div>
+		</div>
+		
+
+	</div>
+	
+	<div id="footer">
+		<p class="copy right">Copyright &copy;  2023 </p>
+	</div>
+</div>
 </body>
 </html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini-blog</title>
+</head>
+<body>
+    {% for publication in publication_list %}
+        <h3>{{ publication.title }}</h3>
+        <p>{{ publication.description }}</p>
+        <p>{{ publication.author }}</p>
+    {% endfor %}
+</body>
+</html>
