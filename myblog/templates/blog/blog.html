@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
 
-	<link rel="shortcut icon" href="{% static 'css/images/favicon.ico' %}" />
+{#	<link rel="shortcut icon" href="{% static 'css/images/favicon.ico' %}" />#}
 
 </head>
 <body>
@@ -15,8 +15,8 @@
 
 		<div id="navigation">
 			<ul>
-			    <li><a href="#" class="active">Main</a></li>
-			    <li><a href="#">Admin panel</a></li>
+			    <li><a href="/" class="active">Main</a></li>
+			    <li><a href="/admin">Admin panel</a></li>
 			    
 			</ul>
 		</div>
@@ -29,10 +29,10 @@
                     {% for publication in publication_list %}
 					<div class="item">
 						<div class="image left">
-							<a href="#"><img src="css/images/project01.jpg" alt="" /></a>
+							<a href="#"><img src="{{ publication.image.url }}" width="200px" alt="" /></a>
 						</div>
 						<div class="text left">
-							<h4>{{ publication.title }}</h4>
+                            <h4><a href="{{ publication.id }}">{{ publication.title }}</a></h4>
 							<p>{{ publicatrion.description }}</p>
 							<p>Author: {{ publication.author }} </p>
 						</div>

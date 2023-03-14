@@ -1,0 +1,96 @@
+<!DOCTYPE>
+{% load static %}
+<html  lang="en">
+<head>
+	<title>My blog</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+
+{#	<link rel="shortcut icon" href="{% static 'css/images/favicon.ico' %}" />#}
+
+</head>
+<body>
+<div class="shell">
+	<div class="border">
+
+		<div id="navigation">
+			<ul>
+			    <li><a href="/" class="active">Main</a></li>
+			    <li><a href="/admin">Admin panel</a></li>
+
+			</ul>
+		</div>
+
+		<div id="main">
+			<div id="content" class="left">
+
+				<div class="projects">
+					<h3>{{ publication.title }}</h3>
+                    <p align="center">
+                        <img src="{{ publication.image.url }}" width="50%" alt="" />
+                    </p>
+					<div class="item">
+						<div class="text left">
+							<p>{{ publicatrion.description }}</p>
+							<p>Author: {{ publication.author }} </p>
+						</div>
+						<div class="cl">&nbsp;</div>
+					</div>
+
+				</div>
+			</div>
+            <div>
+                <br>
+                <p>Likes: {{ publication.like_set.all.count }}</p>
+                <br>
+                <a href="{% url 'add_like' publication.id %}">Like</a>
+                <a href="{% url 'del_like' publication.id %}">Dislike</a>
+            </div>
+            <div class="form-comment">
+                <h3>Leave comment</h3>
+                <div>
+                    <form action="{% url 'add_comment' publication.id %}" method="post">
+                        {% csrf_token %}
+                        <div>
+                            <label>Your comment
+                                <textarea name="text"></textarea>
+                            </label>
+                        </div>
+                        <div>
+                            <label>Your name *
+                                <input type="text" name="name">
+                            </label>
+                        </div>
+                        <div>
+                            <label>Email *
+                                <input type="email" name="email">
+                            </label>
+                            <br>
+                            <input type="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+                {% for comment in publication.comment_set.all %}
+                <div class="view-comment">
+                    <h4>{{ comment.name }}</h4>
+                    <p>
+                        {{ comment.text }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+			<div class="cl">&nbsp;</div>
+		</div>
+
+
+	</div>
+
+	<div id="footer">
+		<p class="copy right">Copyright &copy;  2023 </p>
+	</div>
+</div>
+</body>
+</html>
